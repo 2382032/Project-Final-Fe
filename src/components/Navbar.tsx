@@ -57,6 +57,7 @@ const Navbar = () => {
             >
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
+              <p>makan</p>
               <BellIcon aria-hidden="true" className="size-6" />
             </button>
 
