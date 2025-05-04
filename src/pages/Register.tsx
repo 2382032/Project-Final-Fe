@@ -17,6 +17,7 @@ export const Register = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<RegisterInput>();
+
   const handleRegister = async (data: RegisterInput) => {
     try {
       await axios.post("/api/auth/register", {
@@ -30,11 +31,20 @@ export const Register = () => {
       alert("Username or email already registered");
     }
   };
+
   const { mutate } = useMutation({ mutationFn: handleRegister });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-md">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 relative overflow-hidden">
+      {/* Background Text */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <h1 className="text-5xl md:text-7xl font-extrabold text-gray-300 opacity-20 text-center px-4 leading-tight">
+          Sistem Pengelolaan Event Kampus
+        </h1>
+      </div>
+
+      {/* Register Card */}
+      <div className="relative z-10 max-w-md w-full bg-white p-8 rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Create an Account
         </h2>
@@ -60,7 +70,7 @@ export const Register = () => {
             />
 
             {errors.username && (
-              <p className="text-red-600 text-xs italic" id="titleError">
+              <p className="text-red-600 text-xs italic">
                 Username is required.
               </p>
             )}
@@ -82,7 +92,7 @@ export const Register = () => {
               {...register("email")}
             />
             {errors.email && (
-              <p className="text-red-600 text-xs italic" id="titleError">
+              <p className="text-red-600 text-xs italic">
                 Email is required.
               </p>
             )}
@@ -104,7 +114,7 @@ export const Register = () => {
               {...register("password")}
             />
             {errors.password && (
-              <p className="text-red-600 text-xs italic" id="titleError">
+              <p className="text-red-600 text-xs italic">
                 Password is required.
               </p>
             )}
@@ -126,7 +136,7 @@ export const Register = () => {
             onClick={() => {
               navigate("/login");
             }}
-            className="text-blue-600 hover:underline"
+            className="text-blue-600 hover:underline cursor-pointer"
           >
             Login
           </a>

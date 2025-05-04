@@ -44,8 +44,16 @@ export const Login = () => {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-md">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 relative overflow-hidden">
+      {/* Background Text */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <h1 className="text-5xl md:text-7xl font-extrabold text-gray-300 opacity-20 text-center px-4 leading-tight">
+          Sistem Pengelolaan Event Kampus
+        </h1>
+      </div>
+
+      {/* Login Card */}
+      <div className="relative z-10 max-w-md w-full bg-white p-8 rounded-2xl shadow-md">
         {isPending && (
           <div className="absolute inset-0 bg-white bg-opacity-70 flex items-center justify-center z-20 rounded-2xl">
             <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
@@ -75,7 +83,7 @@ export const Login = () => {
               {...register("email")}
             />
             {errors.email && (
-              <p className="text-red-600 text-xs italic" id="titleError">
+              <p className="text-red-600 text-xs italic">
                 Email is required.
               </p>
             )}
@@ -97,7 +105,7 @@ export const Login = () => {
               {...register("password")}
             />
             {errors.password && (
-              <p className="text-red-600 text-xs italic" id="titleError">
+              <p className="text-red-600 text-xs italic">
                 Password is required.
               </p>
             )}
@@ -119,7 +127,7 @@ export const Login = () => {
             onClick={() => {
               navigate("/register");
             }}
-            className="text-blue-600 hover:underline"
+            className="text-blue-600 hover:underline cursor-pointer"
           >
             Sign up
           </a>

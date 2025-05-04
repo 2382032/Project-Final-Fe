@@ -3,19 +3,23 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-  RouterProvider
+  RouterProvider,
 } from "react-router-dom";
 import BaseLayout from "./layouts/BaseLayout";
 import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Post from "./pages/Post";
 import Register from "./pages/Register";
+import Post from "./pages/Post";
+import EventList from "./pages/EventList";
+import ParticipantList from "./pages/ParticipantList";
+import CertificateDistribution from "./pages/CertificateDistribution";
 import PrivateRoute from "./utils/PrivateRoute";
 import PublicRoute from "./utils/PublicRoute";
 import { AuthProvider } from "./utils/AuthProvider";
 
 const queryClient = new QueryClient();
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -55,18 +59,41 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="EventList"
+            element={
+              <PrivateRoute>
+                <EventList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="participants"
+            element={
+              <PrivateRoute>
+                <ParticipantList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="certificates"
+            element={
+              <PrivateRoute>
+                <CertificateDistribution />
+              </PrivateRoute>
+            }
+          />
         </Route>
       </Route>
     )
   );
+
   return (
-    <>
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>
     </AuthProvider>
-    </>
   );
 }
 
